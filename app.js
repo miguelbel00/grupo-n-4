@@ -39,7 +39,7 @@ app.use((err, req, res) => {
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
-  console.log(`Servidor funcionando en el puerto ${port}`)
+  console.log(`Servidor funcionando en el puerto http://localhost:${port}`)
 })
 
 module.exports = app
