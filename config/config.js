@@ -7,7 +7,12 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    dialect: 'mysql'
+    dialect: 'mysql',
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: true,
+      }
+    }
   },
 
   production: {
@@ -16,6 +21,11 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    dialect: 'mysql'
+    dialect: 'mysql',
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: true,
+      }
+    }
   },
 }
