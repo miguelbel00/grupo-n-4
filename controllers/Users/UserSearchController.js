@@ -10,13 +10,13 @@ module.exports = {
       const response = await User.findAll({attributes:['firstName','lastName','email','createdAt']})
       endpointResponse({
         res,
-        message: 'Test retrieved successfully',
+        message: 'All users obtained',
         body: response,
       })
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error retrieving UserSerach] - [UserSearchController - GET]: ${error.message}`,
+        `[Error obtaining UserSearch] - [UserSearchController - GET]: ${error.message}`,
       )
       next(httpError)
     }
