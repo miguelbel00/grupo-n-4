@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { updateUser } = require("../controllers/Users/userUpdateControllers");
-const { getById } = require("../controllers/users/userById");
+const { getById } = require("../controllers/Users/userById");
 
 const router = Router();
 
