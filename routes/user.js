@@ -1,7 +1,10 @@
 const express = require('express');
-var router = express.Router();
-const user = require('../controllers/Users/createUserControllers');
+const { createUser } = require('../controllers/Users/createUserControllers');
+const { schemaValidator } = require('../middlewares/validatorSchema');
+const { createUserSchema } = require('../schemas/users');
 
-router.post('/', user.create);
+const router = express.Router();
+
+router.post('/', schemaValidator(createUserSchema), createUser);  // schemaValidator(createUser)
 
 module.exports = router;

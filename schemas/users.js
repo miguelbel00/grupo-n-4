@@ -1,4 +1,4 @@
-exports.createUser = {
+exports.createUserSchema = {
   firstName: {
     isString: { errorMessage: 'firstName is not a string' },
     exists: {
