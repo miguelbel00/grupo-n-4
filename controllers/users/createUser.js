@@ -3,11 +3,11 @@ const { User } = require("../../database/models");
 module.exports = {
   createUser: async (req, res) => {
     try {
-      const { firstName, lastName, email, password, avatar, roleId } = req.body;
+      const { firstName, lastname, email, password, avatar, roleId } = req.body;
 
       const newUser = await User.create({
         firstName,
-        lastName,
+        lastname,
         email,
         password,
         avatar,

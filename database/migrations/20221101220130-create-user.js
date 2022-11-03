@@ -25,12 +25,12 @@ module.exports = {
       },
       roleId: {
         type: Sequelize.INTEGER,
-        references: {
+        /* references: {
           model: "Roles",
           key: "id",
         },
         onDelet: "CASCADE",
-        onUpdate: "CASCADE",
+        onUpdate: "CASCADE", */
       },
       createdAt: {
         allowNull: false,
