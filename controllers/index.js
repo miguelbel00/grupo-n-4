@@ -1,5 +1,5 @@
 const createHttpError = require('http-errors')
-const { Transaction } = require('../database/models')
+const { Test } = require('../database/models')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
 
@@ -21,22 +21,22 @@ module.exports = {
       next(httpError)
     }
   }),
-  // post: catchAsync(async (req, res, next) => {
-  //   try {
-  //     const response = await Transaction.create(req.body)
-  //     endpointResponse({
-  //       res,
-  //       message: 'Test created successfully',
-  //       body: response,
-  //     })
-  //   } catch (error) {
-  //     const httpError = createHttpError(
-  //       error.statusCode,
-  //       `[Error creating index] - [index - POST]: ${error.message}`,
-  //     )
-  //     next(httpError)
-  //   }
-  // }),
+  post: catchAsync(async (req, res, next) => {
+    try {
+      const response = await Test.create(req.body)
+      endpointResponse({
+        res,
+        message: 'Test created successfully',
+        body: response,
+      })
+    } catch (error) {
+      const httpError = createHttpError(
+        error.statusCode,
+        `[Error creating index] - [index - POST]: ${error.message}`,
+      )
+      next(httpError)
+    }
+  }),
   
 }
 
