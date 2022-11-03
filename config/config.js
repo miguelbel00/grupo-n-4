@@ -10,7 +10,7 @@ module.exports = {
     dialect: 'mysql',
     dialectOptions: {
       ssl: {
-        rejectUnauthorized: true,
+        rejectUnauthorized: false,
       }
     }
   },

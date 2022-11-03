@@ -1,13 +1,13 @@
 const express = require('express')
 const { get, post } = require('../controllers/index')
-const { requestValidation } = require('../middlewares')
-const {validatorRegister} = require('../schemas')
+const validatorSchemas = require('../middlewares/validatorSchemas')
+const { TransactionSchema } = require('../schemas/transactionValidatorSchema')
 
 
 const router = express.Router()
 
 // example of a route with index controller get function
 router.get('/', get);
-router.post('/register', requestValidation(validatorRegister), post);
+//router.post('/register', validatorSchemas(TransactionSchema), post);
 
 module.exports = router
