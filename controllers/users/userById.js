@@ -9,16 +9,16 @@ module.exports = {
     try {
       const { id } = req.params;
 
-      const userId = await User.findOne({ where: { id } });
+      const userFound = await User.findOne({ where: { id } });
 
-      if (!userId) {
-        return next(new ErrorObject(" Id not found ", 400));
+      if (!userFound) {
+        throw next(new ErrorObject(" Id not found ", 400));
       }
 
       endpointResponse({
         res,
         message: "result successfully",
-        body: userId,
+        body: userFound,
       });
     } catch (error) {
       const httpError = createHttpError(
