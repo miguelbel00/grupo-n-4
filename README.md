@@ -55,6 +55,8 @@ Estructura las respuestas positivas de toda la app. Dentro del archivo helpers/s
 Un objecto de error, el cual puede recibir varios atributos (pueden verlo en helpers/error.js)
 El mismo es una extensión de el objecto Error nativo de JS. Sirve para devolver errores cuando esten por fuera del controlador, y que los errores sean interceptados por el CATCH que tendran en los controllers. 
 
+esto es una prueba
+
 
 
 
