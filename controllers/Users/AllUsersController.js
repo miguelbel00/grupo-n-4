@@ -7,10 +7,11 @@ const { catchAsync } = require('../../helpers/catchAsync')
 module.exports = {
   getAllUsers: catchAsync(async (req, res, next) => {
     try {
+      //called to the db and only return specifics attributes
       const response = await User.findAll({attributes:['firstName','lastName','email','createdAt']})
       endpointResponse({
         res,
-        message: 'All users obtained',
+        message: 'Users obtained',
         body: response,
       })
     } catch (error) {

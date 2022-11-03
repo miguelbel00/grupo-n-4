@@ -25,7 +25,7 @@ npx sequelize db:migrate
 ```
 npx sequelize db:drop
 ``` 
-### Generar la seed role
+### Generar el archivo de la seed role
 ```
 npx sequelize seed:generate --name create-role
 ``` 
@@ -33,7 +33,7 @@ npx sequelize seed:generate --name create-role
 ```
 npx sequelize db:seed:all
 ``` 
-### Borrar la semilla
+### Borrar la semilla por nombre
 ```
 npx sequelize db:seed:undo --seed nombreDeLaSeed
 ``` 
