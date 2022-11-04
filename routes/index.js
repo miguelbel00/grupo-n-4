@@ -1,11 +1,13 @@
 const express = require('express')
 const categoryRoutes = require('./categoryRoutes')
 const usersRoutes = require('./usersRoutes')
+const transactionsRoutes = require('./transactionsRoutes')
 
 const router = express.Router()
 
 // example of a route with index controller get function
 router.use('/', categoryRoutes)
 router.use('/', usersRoutes)
+router.use('/', transactionsRoutes)
 
 module.exports = router
