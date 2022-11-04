@@ -4,9 +4,9 @@ const usersRoutes = require('./usersRoutes')
 const transactionsRoutes = require('./transactionsRoutes')
 
 const router = express.Router()
-
-// example of a route with index controller get function
+//Middleware used for categories request
 router.use('/', categoryRoutes)
+//Middleware used for user request
 router.use('/', usersRoutes)
 router.use('/', transactionsRoutes)
 
