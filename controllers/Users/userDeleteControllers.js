@@ -27,7 +27,7 @@ module.exports = {
         } catch (error) {
             const httpError = createHttpError(
                 error.statusCode,
-                `[Error retrieving index] - [index - DELETE]: ${error.message}`
+                `[Error deleted used] - [User/userDeleteControllers.js - DELETE]: ${error.message}`
               );
               next(httpError);
         }
