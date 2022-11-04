@@ -25,7 +25,7 @@ module.exports = {
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error retrieving Transactions] - [index - PUT]: ${error.message}`
+        `[Error retrieving Transactions] - [TransactionUpdateController - PUT]: ${error.message}`
       );
       next(httpError);
     }
