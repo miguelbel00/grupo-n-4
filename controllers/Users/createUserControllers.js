@@ -5,26 +5,6 @@ const { ErrorObject } = require('../../helpers/error');
 const { catchAsync } = require('../../helpers/catchAsync')
 const { User } = require('../../database/models');
 
-// module.exports = {
-//   create: catchAsync(async (req, res, next) => {
-//     try {
-//       const newUser = await createUser(req.body)
-//       endpointResponse({
-//         res,
-//         message: 'User created',
-//         body: newUser,
-//       })
-
-//     } catch (error) {
-//       const httpError = createHttpError(
-//         error.statusCode,
-//         `[Error creating User] - [createUserControllers - POST]: ${ error.message }`,
-//       )
-//       next(httpError)
-//     }
-//   }),
-// }
-
 module.exports = {
   createUser: catchAsync(async (req, res, next) => {
     try {
