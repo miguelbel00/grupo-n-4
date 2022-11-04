@@ -12,7 +12,7 @@ module.exports = {
       const transactionById = await Transaction.findOne({ where: { id } });
 
       if (!transactionById) {
-        throw next(new ErrorObject(" transaction by Id not found ", 404));
+        throw new ErrorObject(" transaction by Id not found ", 404);
       }
 
       await transactionById.update(req.body);
@@ -25,7 +25,7 @@ module.exports = {
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error retrieving index] - [index - GET]: ${error.message}`
+        `[Error retrieving Transactions] - [index - PUT]: ${error.message}`
       );
       next(httpError);
     }
