@@ -6,7 +6,7 @@ const { endpointResponse } = require("../../helpers/success");
 const createHttpError = require("http-errors");
 
 module.exports = {
-    getDataTransaction: catchAsync(async (req = request, res = response, next) => {
+    getTransactionById: catchAsync(async (req = request, res = response, next) => {
         try {
             const { id } = req.params;
 
@@ -21,7 +21,7 @@ module.exports = {
         } catch (error) {
             const httpError = createHttpError(
                 error.statusCode,
-                `[Error Get Transaction Data] - [transactionDataControllers - GET]: ${error.message}`,
+                `[Error trying to get data] - [transactionsSearchOneController - GET]: ${error.message}`,
             )
             next(httpError)
         }

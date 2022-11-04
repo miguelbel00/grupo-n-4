@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const { getDataTransaction } = require('../controllers/Transactions/transactionDataControllers');
+const { getTransactionById } = require('../controllers/Transactions/transactionsSearchOneController');
 
 const router = Router();
 
-router.get('/transactions/:id', getDataTransaction)
+router.get('/transactions/:id', getTransactionById)
 
 module.exports = router;
