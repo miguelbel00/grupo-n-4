@@ -11,7 +11,7 @@ module.exports = {
             const { id } = req.params;
             const user = await User.findByPk(id);
 
-            if (user != null) {
+            if (!user)throw new ErrorObject('User not found',400)
                 const responce = await User.destroy({
                     where: { id }
                 })
@@ -20,14 +20,12 @@ module.exports = {
                     message: "User successfully deleted",
                     body: responce,
                 });
-            } else {
-                throw next(new ErrorObject(" Usuario not found", 400));
-            }
+            
 
         } catch (error) {
             const httpError = createHttpError(
                 error.statusCode,
-                `[Error deleted used] - [User/userDeleteControllers.js - DELETE]: ${error.message}`
+                `[Error deleted user] - [userDeleteControllers - DELETE]: ${error.message}`
             );
             next(httpError);
         }
