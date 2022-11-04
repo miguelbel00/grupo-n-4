@@ -1,3 +1,4 @@
+/* A validation schema for the user model. */
 exports.createUserSchema = {
   firstName: {
     isString: { errorMessage: 'firstName is not a string' },
@@ -7,9 +8,9 @@ exports.createUserSchema = {
     },
   },
   lastname: {
-    isString: { errorMessage: 'lastame is not a string' },
+    isString: { errorMessage: 'lastname is not a string' },
     exists: {
-      errorMessage: 'lastame cannot be NULL',
+      errorMessage: 'lastname cannot be NULL',
       options: { checkFalsy: true },
     },
   },
