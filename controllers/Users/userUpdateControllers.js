@@ -1,7 +1,7 @@
 const createHttpError = require("http-errors");
 const { User } = require("../../database/models");
 const { catchAsync } = require("../../helpers/catchAsync");
-const bcryptjs = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const { ErrorObject } = require('../../helpers/error');
 const { endpointResponse } = require("../../helpers/success");
 
@@ -11,12 +11,12 @@ module.exports = {
             const { id } = req.params
             let { firstName, lastname, email, password, avatar } = req.body
 
-            const user = await User.findByPk(id)
+            const user = await User.findOne({ where: { id } })
             if (!user) throw new ErrorObject('The user not exists', 404)
 
             if (password) {
-                const salt = bcryptjs.genSaltSync();
-                password = bcryptjs.hashSync(password, salt);
+                const salt = bcrypt.genSaltSync();
+                password = bcrypt.hashSync(password, salt);
             }
 
             const data = {
