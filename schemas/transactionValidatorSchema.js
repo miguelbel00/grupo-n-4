@@ -36,6 +36,7 @@ const TransactionSchema = checkSchema(
   },
 });
 
+
 module.exports = {
   TransactionSchema,
 };
