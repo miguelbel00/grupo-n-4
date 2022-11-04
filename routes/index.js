@@ -5,6 +5,7 @@ const transactionsRoutes = require("./transactionsRoutes");
 
 const router = express.Router();
 
+// example of a route with index controller get function
 router.use("/", categoryRoutes);
 router.use("/", usersRoutes);
 router.use("/", transactionsRoutes);

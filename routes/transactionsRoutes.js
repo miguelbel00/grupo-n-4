@@ -1,10 +1,14 @@
-const { Router } = require("express");
+const express = require("express");
+const {
+  getAllTransactions,
+} = require("../controllers/Transactions/transactionSearchController");
 const {
   updateTransactionById,
-} = require("../controllers/transactions/transationsUpdateController");
+} = require("../controllers/Transactions/transationsUpdateController");
 
-const router = Router();
+const router = express.Router();
 
+router.get("/transactions", getAllTransactions);
 router.put("/transactions/:id", updateTransactionById);
 
 module.exports = router;
