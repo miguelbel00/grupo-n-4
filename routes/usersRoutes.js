@@ -7,7 +7,7 @@ const { createUserSchema } = require('../schemas/users');
 const router = Router();
 
 router.put('/users/:id', updateUser)
-router.post('/', schemaValidator(createUserSchema), createUser);
+router.post('/users', schemaValidator(createUserSchema), createUser);
 
 
 module.exports = router
