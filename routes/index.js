@@ -1,5 +1,6 @@
 const express = require('express')
-const User = require('./User')
+const User = require('./usersRoutes')
+const categoryRoutes = require('./categoryRoutes')
 const router = express.Router()
 
 //Middleware used for user request
