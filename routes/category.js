@@ -1,11 +1,11 @@
 const express = require('express')
 // const { get } = require('../controllers/index')
-const categoryRouter = require('./category')
+const { get, post } = require('../controllers/category.controller')
 
 const router = express.Router()
 
 // example of a route with index controller get function
 // router.get('/', get)
-router.use('/category', categoryRouter)
+router.post('/', post)
 
 module.exports = router

@@ -10,11 +10,11 @@
     "url": "https://github.com/gabodmc/nodejs-boilerplate"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "test": "mocha ./test/*.js"
   },
   "engines": {
-    "node": ">=0.14"
+    "node": "14.x"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
