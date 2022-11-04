@@ -1,7 +1,7 @@
-const { Router } = require('express');
+const express = require('express');
 const { getTransactionById } = require('../controllers/Transactions/transactionsSearchOneController');
 
-const router = Router();
+const router = express.Router();
 
 router.get('/transactions/:id', getTransactionById)
 
