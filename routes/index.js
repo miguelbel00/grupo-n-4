@@ -1,11 +1,11 @@
 const express = require('express')
 const categoryRoutes = require('./categoryRoutes')
 const usersRoutes = require('./usersRoutes')
+
 const router = express.Router()
-
-//Middleware used for user request
+//Middleware used for categories request
 router.use('/', categoryRoutes)
+//Middleware used for user request
 router.use('/', usersRoutes)
-
 
 module.exports = router
