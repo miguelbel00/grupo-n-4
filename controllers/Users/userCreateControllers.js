@@ -9,7 +9,7 @@ module.exports = {
   createUser: catchAsync(async (req, res, next) => {
     try {
 
-      // verificate (ERROR)
+      // verificate existent email
       const existentUser = await User.findOne({ where: { email: req.body.email } })
       if (existentUser) throw new ErrorObject('That email is already in use', 404)
 
@@ -31,7 +31,7 @@ module.exports = {
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error creating User] - [createUserControllers - POST]: ${ error.message }`,
+        `[Error creating User] - [userCreateControllers - POST]: ${ error.message }`,
       )
       next(httpError)
     }
