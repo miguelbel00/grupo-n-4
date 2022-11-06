@@ -8,6 +8,7 @@ const router = express.Router();
 router.use("/", categoryRoutes);
 //Middleware used for user request
 router.use("/", usersRoutes);
+//Middleware used for user trasactionsRoutes
 router.use("/", transactionsRoutes);
 
 module.exports = router;
