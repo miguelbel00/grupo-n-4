@@ -14,7 +14,7 @@
     "test": "mocha ./test/*.js"
   },
   "engines": {
-    "node": "14.x"
+    "node": ">=0.14"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
