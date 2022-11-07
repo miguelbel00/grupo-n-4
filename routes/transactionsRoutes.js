@@ -12,7 +12,6 @@ const {
 const {
   updateTransactionById,
 } = require("../controllers/Transactions/transationsUpdateController");
-
 const {deleteTransaction}= require("../controllers/Transactions/transactionsDeleteControllers");
 
 const router = express.Router();
