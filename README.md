@@ -25,6 +25,19 @@ npx sequelize db:migrate
 ```
 npx sequelize db:drop
 ``` 
+### Generar el archivo de la seed role
+```
+npx sequelize seed:generate --name create-role
+``` 
+### Utilizamos todas las seeds
+```
+npx sequelize db:seed:all
+``` 
+### Borrar la semilla por nombre
+```
+npx sequelize db:seed:undo --seed nombreDeLaSeed
+``` 
+
 
 ## 🏗 Algunos datos del proyecto:
 - La estructura de carpetas es del patron MVC
