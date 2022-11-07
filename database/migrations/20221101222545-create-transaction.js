@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
-          key:'id'
+          key: 'id'
         },
         onDelet: 'CASCADE',
         onUpdate: 'CASCADE'
@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Categories',
-          key:'id'
+          key: 'id'
         },
         onDelet: 'CASCADE',
         onUpdate: 'CASCADE'
@@ -42,7 +42,11 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      deletedAt: {
+        type: Sequelize.DATE
       }
+
     });
   },
   down: async (queryInterface, Sequelize) => {
