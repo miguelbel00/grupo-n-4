@@ -25,9 +25,12 @@ npx sequelize db:migrate
 ```
 npx sequelize db:drop
 ``` 
-### Generar el archivo de la seed role
+### Generar el archivo de la seeds
 ```
 npx sequelize seed:generate --name create-role
+npx sequelize seed:generate --name create-categories
+npx sequelize seed:generate --name create-user
+npx sequelize seed:generate --name create-transaction
 ``` 
 ### Utilizamos todas las seeds
 ```
