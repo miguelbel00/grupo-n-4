@@ -4,6 +4,8 @@ const { createUser } = require('../controllers/Users/userCreateControllers');
 const { getById } = require("../controllers/Users/userByIdcontrollers");
 const { deleteUser } = require("../controllers/Users/userDeleteControllers");
 const { getAllUsers } = require('../controllers/Users/userSearchController')
+const {upload} = require('../helpers/imageService');
+const {imageUpload} = require("../controllers/Users/imageUploadControllers");
 
 const router = Router();
 
@@ -13,6 +15,7 @@ router.get("/users/:id", getById);
 router.put("/users/:id", updateUser);
 router.delete("/users/:id",deleteUser);
 router.get('/users', getAllUsers)
+router.post('/image',upload.single('image'),imageUpload)
 
 module.exports = router;
 
