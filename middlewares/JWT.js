@@ -10,7 +10,7 @@ const codificate = (data) => {
 }
 
 const decodificate = (token) => {
-    const payload = jwt.decodificate(token)
+    const payload = jwt.decode(token)
     return payload;
 }
 
