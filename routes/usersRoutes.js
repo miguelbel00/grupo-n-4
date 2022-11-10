@@ -7,6 +7,7 @@ const { getAllUsers } = require('../controllers/Users/userSearchController')
 
 const router = Router();
 
+router.post('/users', createUser);
 router.put('/users/:id', updateUser)
 router.get("/users/:id", getById);
 router.put("/users/:id", updateUser);
