@@ -12,6 +12,7 @@ module.exports = {
   loginUser: catchAsync(async (req, res, next) => {
     try {
       const user = await User.findOne({ where: { email: req.body.email } });
+
       if (!user) throw new ErrorObject(`error user with email ${req.body.email} does not exist`, 404);
 
       const validatePass = await bcrypt.compare(req.body.password, user.password)
