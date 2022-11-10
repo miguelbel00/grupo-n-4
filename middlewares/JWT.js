@@ -27,16 +27,12 @@ const verify = async (req = request, res = response, next) => {
         const { id } = jwt.verify(token, process.env.SECRETORPRIVATEKEY)
 
         const { dataValues: user } = await User.findOne({ where: { id } });
-        const { dataValues: rol } = await Role.findOne({ where: { id: user.roleId } })
 
         if (!user) {
             throw new ErrorObject("The owner of this token does not exist anymore", 403);
         }
 
-        req.user = {
-            ...user,
-            ...rol
-        };
+        req.user = user;
         next()
     } catch (error) {
         throw new ErrorObject('Your session has expired. Please relogin', 400)
