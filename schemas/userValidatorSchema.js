@@ -44,11 +44,6 @@ const UserSchema = checkSchema(
       errorMessage: 'Password is required',
     },
   },
-  avatar: {
-    isURL: {
-      errorMessage: 'Invalid URL',
-    },
-  },
 });
 
 module.exports = {

@@ -5,11 +5,13 @@ const { deleteUser } = require("../controllers/Users/userDeleteControllers");
 const { getAllUsers } = require('../controllers/Users/userSearchController')
 const {upload} = require('../helpers/imageService');
 const {imageUpload} = require("../controllers/Users/imageUploadControllers");
+const validatorSchemas = require('../middlewares/validatorSchemas');
+const { UserSchema } = require('../schemas/userValidatorSchema')
+
 
 const router = Router();
 
-router.put('/users/:id', updateUser)
-router.get("/users/:id", getById);
+router.put('/users/:id', validatorSchemas(UserSchema), updateUser)
 router.delete("/users/:id",deleteUser);
 router.get('/users', getAllUsers)
 router.post('/image',upload.single('image'),imageUpload)

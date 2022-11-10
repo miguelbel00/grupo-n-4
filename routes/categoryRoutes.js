@@ -3,11 +3,16 @@ const { createCategory } = require('../controllers/Category/categoryCreateContro
 const { getAllCategory } = require('../controllers/Category/categorySearchController')
 const { getCategoryById } = require('../controllers/Category/categorySearchOneController')
 const { updateCategory } = require('../controllers/Category/categoryUpdateController')
+const validatorSchemas = require('../middlewares/validatorSchemas');
+const { CategorySchema } = require('../schemas/categoryValidatorSchema');
+
 
 const router = express.Router()
 
-router.post('/categories', createCategory)
-router.get('/categories', getAllCategory)
-router.get('/categories/:id', getCategoryById)
-router.put('/categories/:id', updateCategory)
+router.post('/categories', validatorSchemas(CategorySchema),  createCategory);
+router.get('/categories', getAllCategory);
+router.get('/categories/:id', getCategoryById);
+router.put('/categories/:id', validatorSchemas(CategorySchema), updateCategory);
+
+
 module.exports = router
