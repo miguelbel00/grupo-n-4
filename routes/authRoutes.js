@@ -1,5 +1,6 @@
 const express = require('express')
-const { loginUser } = require('../controllers/auth/loginController')
+const { loginUser } = require('../controllers/auth/loginController');
+const { createUser } = require('../controllers/Users/userCreateControllers');
 
 const router = express.Router()
 
@@ -62,5 +63,7 @@ const router = express.Router()
  *     description: error password or email not found
  * 
  */
+router.post('/auth/register', createUser);
 router.post('/auth/login', loginUser)
+
 module.exports = router

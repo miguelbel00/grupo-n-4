@@ -50,7 +50,7 @@ describe('[TEST-USERS]', () => {
 
   describe('[CREATE-USER]', () => {
     it('should return an create user', async () => {
-      const { body } = await request(app).post(`/users`)
+      const { body } = await request(app).post(`/auth/register`)
         .send(registerUser)
         .set('Accept', 'aplication/json')
         .expect('Content-Type', /json/)
@@ -64,7 +64,7 @@ describe('[TEST-USERS]', () => {
     })
 
     it(`'should return an error User creation failed`, async () => {
-      const { error } = await request(app).post(`/users`)
+      const { error } = await request(app).post(`/auth/register`)
         .send(registerUser)
         .set('Accept', 'text/html; charset=utf-8')
         .expect('Content-Type', /text\/html/)
