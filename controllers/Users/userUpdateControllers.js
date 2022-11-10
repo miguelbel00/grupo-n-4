@@ -12,6 +12,7 @@ module.exports = {
             let { firstName, lastname, email, password, avatar } = req.body
 
             const user = await User.findOne({ where: { id } })
+            
             if (!user) throw new ErrorObject('The user not exists', 404)
 
             if (password) {
