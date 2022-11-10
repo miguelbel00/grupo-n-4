@@ -4,7 +4,9 @@ const { endpointResponse } = require("../../helpers/success");
 const { catchAsync } = require("../../helpers/catchAsync");
 const { ErrorObject } = require("../../helpers/error");
 const { Op } = require("sequelize");
-const { paginate } = require("../../middlewares/paginateMiddleware");
+const {
+  paginate,
+} = require("../../middlewares/paginateTransactionsMiddleware");
 
 module.exports = {
   listTransactions: catchAsync(async (req, res, next) => {
