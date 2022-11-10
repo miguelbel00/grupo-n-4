@@ -12,23 +12,23 @@ module.exports = {
       //get the query params
 
       const {
-        q = 0,
+        description = 0,
         page = 0,
         limit = 10,
         order_by,
         order_direction = "asc",
       } = req.query;
 
-      if (q === page) {
+      if (description === page) {
         throw new ErrorObject("the params query not found", 404);
       }
 
       let search = {};
       let order = [];
 
-      if (q) {
+      if (description) {
         search = {
-          where: { name: { [Op.like]: `%${q}%` } },
+          where: { name: { [Op.like]: `%${description}%` } },
         };
       }
 
