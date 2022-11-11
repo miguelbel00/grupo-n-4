@@ -2,7 +2,6 @@ const createHttpError = require('http-errors')
 const { decodificate } = require('./JWT')
 const { User } = require('../database/models')
 const { catchAsync } = require('../helpers/catchAsync');
-const { endpointResponse } = require("../helpers/success");
 const { ErrorObject } = require("../helpers/error");
 
 module.exports = {
@@ -18,11 +17,6 @@ module.exports = {
         throw new ErrorObject('You dont have permission to access', 403);
 
       next();
-      // endpointResponse({
-      //   res,
-      //   message: "ownership successfully",
-      //   body: { user, token },
-      // });
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
