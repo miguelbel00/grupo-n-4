@@ -94,7 +94,7 @@ describe('[TEST-CATEGORIES]', () => {
     })
 
     it('should return an update category', async () => {
-      const category = await Category.findOne({ where: { id:1 } });
+      const category = await Category.findOne({ where: { id:3 } });
       const { body } = await request(app).put(`/categories/${category.id}`)
         .send(updateCategory)
         .set('Accept', 'text/html; charset=utf-8')
