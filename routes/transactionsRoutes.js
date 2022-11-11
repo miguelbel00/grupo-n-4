@@ -20,10 +20,10 @@ const{verifyUser}=require("../middlewares/verifyUser");
 
 const router = express.Router();
 
-router.put("/transactions/:id",[verify, verifyUser], updateTransactionById);
-router.post("/transactions",[verify, verifyUser], createTransaction);
-router.get("/transactions",[verify, verifyUser], listTransactions);
-router.get("/transactions/:id",[verify, verifyUser], getTransactionById);
-router.delete("/transactions/:id",[verify, verifyUser], deleteTransaction);
+router.put("/transactions/:id", updateTransactionById);
+router.post("/transactions", createTransaction);
+router.get("/transactions", listTransactions);
+router.get("/transactions/:id", getTransactionById);
+router.delete("/transactions/:id", deleteTransaction);
 
 module.exports = router;

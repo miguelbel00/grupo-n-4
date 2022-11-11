@@ -1,28 +1,27 @@
-const { request, response } = require('express');
-const createHttpError = require('http-errors');
 const jwt = require('jsonwebtoken');
-const { Role } = require('../database/models/');
-const { User } = require('../database/models/');
 const { ErrorObject } = require('../helpers/error');
+const dotenv = require('dotenv');
+const createHttpError = require('http-errors');
+dotenv.config()
 
-const codificate = (data) => {
+const encode = (data) => {
     const token = jwt.sign(data, process.env.SECRETORPRIVATEKEY)
     return token
 }
 
-const decodificate = (token) => {
+const decode = (token) => {
     const payload = jwt.decode(token)
     return payload;
 }
 
-const verify = async (req = request, res = response, next) => {
+const verify = (req, res, next) => {
     try {
         const { authorization } = req.headers;
         if (!authorization) {
-            throw new ErrorObject("No token provided", 403);
+            throw new ErrorObject("Token is required", 403);
         }
         const token = authorization.split(' ')[1]
-        const { id } = jwt.verify(token, process.env.SECRETORPRIVATEKEY)
+        const payload = jwt.verify(token, process.env.SECRETORPRIVATEKEY)
         next()
     } catch (error) {
         const httpError = createHttpError(
@@ -34,7 +33,7 @@ const verify = async (req = request, res = response, next) => {
 }
 
 module.exports = {
-    codificate,
-    decodificate,
+    encode,
+    decode,
     verify
 }

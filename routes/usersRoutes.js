@@ -9,10 +9,10 @@ const{verify}= require("../middlewares/JWT");
 const{verifyUser}=require("../middlewares/verifyUser");
 const router = Router();
 
-router.put('/users/:id',[verify, verifyUser], updateUser);
-router.get("/users/:id",[verify, verifyUser], getById);
-router.delete("/users/:id",[verify, verifyUser], deleteUser);
-router.get('/users',[verify, verifyUser], getAllUsers);
+router.put('/users/:id', updateUser);
+router.get("/users/:id", getById);
+router.delete("/users/:id", deleteUser);
+router.get('/users', getAllUsers);
 router.post('/image',upload.single('image'),imageUpload);
 
 module.exports = router;
