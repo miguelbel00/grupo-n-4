@@ -16,7 +16,7 @@ module.exports = {
       // encrypt pass
       const hashedPass = await bcrypt.hash(req.body.password, 10);
       req.body.password = hashedPass;
-      req.body.roleId = 1;
+      req.body.roleId = 2;
 
       // create user
       const newUser = await User.create(req.body);
