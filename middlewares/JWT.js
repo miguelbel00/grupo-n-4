@@ -1,4 +1,5 @@
 const { request, response } = require('express');
+const createHttpError = require('http-errors');
 const jwt = require('jsonwebtoken');
 const { Role } = require('../database/models/');
 const { User } = require('../database/models/');
@@ -10,32 +11,25 @@ const codificate = (data) => {
 }
 
 const decodificate = (token) => {
-    const payload = jwt.decodificate(token)
+    const payload = jwt.decode(token)
     return payload;
 }
 
 const verify = async (req = request, res = response, next) => {
-    const { authorization } = req.headers;
-
-    if (!authorization || !authorization.startsWith("Bearer")) {
-        throw new ErrorObject("No token provided", 403);
-    }
-
     try {
-
+        const { authorization } = req.headers;
+        if (!authorization) {
+            throw new ErrorObject("No token provided", 403);
+        }
         const token = authorization.split(' ')[1]
         const { id } = jwt.verify(token, process.env.SECRETORPRIVATEKEY)
-
-        const { dataValues: user } = await User.findOne({ where: { id } });
-
-        if (!user) {
-            throw new ErrorObject("The owner of this token does not exist anymore", 403);
-        }
-
-        req.user = user;
         next()
     } catch (error) {
-        throw new ErrorObject('Your session has expired. Please relogin', 400)
+        const httpError = createHttpError(
+            error.statusCode,
+            `[Error verify token] - [JWT - Middleware]: ${error.message}`
+        );
+        next(httpError);
     }
 }
 
