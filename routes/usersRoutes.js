@@ -8,11 +8,11 @@ const {imageUpload} = require("../controllers/Users/imageUploadControllers");
 
 const router = Router();
 
-router.put('/users/:id', updateUser)
+router.put('/users/:id', updateUser);
 router.get("/users/:id", getById);
-router.delete("/users/:id",deleteUser);
-router.get('/users', getAllUsers)
-router.post('/image',upload.single('image'),imageUpload)
+router.delete("/users/:id", deleteUser);
+router.get('/users', getAllUsers);
+router.post('/image',upload.single('image'),imageUpload);
 
 module.exports = router;
 
