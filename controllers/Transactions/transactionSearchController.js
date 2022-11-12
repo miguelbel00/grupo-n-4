@@ -12,12 +12,26 @@ module.exports = {
       //get the query params
 
       const {
+        userId,
         description = 0,
         page = 0,
         limit = 10,
         order_by,
         order_direction = "asc",
       } = req.query;
+
+      if (userId) {
+        if (userId !== req.user.id.toString() && req.user.roleId !== 1) {
+          throw new ErrorObject("you don't have permissions", 403)
+        }
+        const transactions = await Transaction.findAll({ where: { userId: req.user.id } })
+
+        endpointResponse({
+          res,
+          message: 'Transactions found successfully',
+          body: transactions
+        })
+      }
 
       if (description === page) {
         throw new ErrorObject("the params query not found", 404);
