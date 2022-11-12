@@ -7,11 +7,12 @@ const { upload } = require('../helpers/imageService');
 const { imageUpload } = require("../controllers/Users/imageUploadControllers");
 const { ownership } = require('../middlewares/ownership');
 const { verify } = require('../middlewares/JWT');
+const { verifyUser } = require('../middlewares/verifyUser');
 
 
 const router = Router();
 
-router.put('/users/:id', verify, ownership, updateUser)
+router.put('/users/:id', [verify, verifyUser], ownership, updateUser)
 router.get("/users/:id", getById);
 router.delete("/users/:id", deleteUser);
 router.get('/users', getAllUsers);
