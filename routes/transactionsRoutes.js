@@ -19,10 +19,10 @@ const {
 
 const router = express.Router();
 
-router.put("/transactions/:id", updateTransactionById);
-router.post("/transactions", createTransaction);
 router.get("/transactions", listTransactions);
 router.get("/transactions/:id", getTransactionById);
+router.post("/transactions", createTransaction);
+router.put("/transactions/:id", updateTransactionById);
 router.delete("/transactions/:id", deleteTransaction);
 
 module.exports = router;
