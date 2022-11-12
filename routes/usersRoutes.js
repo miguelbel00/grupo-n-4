@@ -9,11 +9,11 @@ const { Ownership } = require('../middlewares/ownership');
 
 const router = Router();
 
-router.put('/users/:id', Ownership, updateUser)
+router.put('/users/:id', Ownership, updateUser);
 router.get("/users/:id", getById);
 router.delete("/users/:id", deleteUser);
-router.get('/users', getAllUsers)
-router.post('/image', upload.single('image'), imageUpload)
+router.get('/users', getAllUsers);
+router.post('/image',upload.single('image'),imageUpload);
 
 module.exports = router;
 
