@@ -29,7 +29,6 @@ const verify = (req, res, next) => {
             `[Error verify token] - [JWT - Middleware]: ${error.message}`
         );
         next(httpError);
-
     }
 }
 
