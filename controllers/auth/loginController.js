@@ -17,7 +17,7 @@ module.exports = {
 
       const validatePass = await bcrypt.compare(req.body.password, user.password)
       if(!validatePass) throw new ErrorObject("You have entered an invalid password", 404);
-      const token = jwt.sign({ id: user.id }, process.env.JWT_PASS, {expiresIn: '1h'})
+      const token = jwt.sign({ id: user.id }, process.env.SECRETORPRIVATEKEY, {expiresIn: '1h'})
 
       endpointResponse({
         res,

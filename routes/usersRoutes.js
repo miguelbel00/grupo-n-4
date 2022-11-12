@@ -11,10 +11,11 @@ const { UserSchema } = require('../schemas/userValidatorSchema')
 
 const router = Router();
 
-router.put('/users/:id', validatorSchemas(UserSchema), updateUser)
-router.delete("/users/:id",deleteUser);
-router.get('/users', getAllUsers)
-router.post('/image',upload.single('image'),imageUpload)
+router.put('/users/:id', updateUser);
+router.get("/users/:id", getById);
+router.delete("/users/:id", deleteUser);
+router.get('/users', getAllUsers);
+router.post('/image',upload.single('image'),imageUpload);
 
 module.exports = router;
 
