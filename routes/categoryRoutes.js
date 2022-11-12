@@ -3,6 +3,9 @@ const { createCategory } = require('../controllers/Category/categoryCreateContro
 const { getAllCategory } = require('../controllers/Category/categorySearchController')
 const { getCategoryById } = require('../controllers/Category/categorySearchOneController')
 const { updateCategory } = require('../controllers/Category/categoryUpdateController')
+const validatorSchemas = require('../middlewares/validatorSchemas');
+const { CategorySchema } = require('../schemas/categoryValidatorSchema');
+
 
 const router = express.Router()
 
@@ -46,7 +49,7 @@ const router = express.Router()
  *      description: fallo de auth
  * 
  */
-router.post('/categories', createCategory)
+router.post('/categories', validatorSchemas(CategorySchema), createCategory)
 /**
  * @swagger
  * /categories:
@@ -121,5 +124,5 @@ router.get('/categories/:id', getCategoryById)
  *       description: categoria no encontrada
  * 
 */
-router.put('/categories/:id', updateCategory)
+router.put('/categories/:id', validatorSchemas(CategorySchema),updateCategory)
 module.exports = router

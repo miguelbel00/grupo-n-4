@@ -1,6 +1,9 @@
 const express = require('express')
 const { loginUser } = require('../controllers/auth/loginController');
 const { createUser } = require('../controllers/Users/userCreateControllers');
+const validatorSchemas = require('../middlewares/validatorSchemas');
+const { UserSchema } = require('../schemas/userValidatorSchema')
+const { LoginSchema } = require('../schemas/authValidatorSchema')
 
 const router = express.Router()
 
@@ -63,7 +66,7 @@ const router = express.Router()
  *     description: error password or email not found
  * 
  */
-router.post('/auth/register', createUser);
-router.post('/auth/login', loginUser)
+router.post('/auth/register',  validatorSchemas(UserSchema), createUser);
+router.post('/auth/login', validatorSchemas(LoginSchema), loginUser)
 
 module.exports = router
