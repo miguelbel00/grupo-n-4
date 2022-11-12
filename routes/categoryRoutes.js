@@ -49,7 +49,7 @@ const router = express.Router()
  *      description: fallo de auth
  * 
  */
-router.post('/categories', createCategory)
+router.post('/categories', validatorSchemas(CategorySchema), createCategory)
 /**
  * @swagger
  * /categories:
@@ -124,5 +124,5 @@ router.get('/categories/:id', getCategoryById)
  *       description: categoria no encontrada
  * 
 */
-router.put('/categories/:id', updateCategory)
+router.put('/categories/:id', validatorSchemas(CategorySchema),updateCategory)
 module.exports = router

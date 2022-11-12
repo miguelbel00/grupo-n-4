@@ -14,8 +14,8 @@ const router = express.Router();
 
 router.get("/transactions", listTransactions);
 router.get("/transactions/:id", getTransactionById);
-router.post("/transactions", createTransaction);
-router.put("/transactions/:id", updateTransactionById);
+router.post("/transactions", validatorSchemas(TransactionSchema), createTransaction);
+router.put("/transactions/:id", validatorSchemas(TransactionSchema), updateTransactionById);
 router.delete("/transactions/:id", deleteTransaction);
 
 module.exports = router;
