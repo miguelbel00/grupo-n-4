@@ -145,6 +145,9 @@ router.delete("/users/:id", deleteUser);
  *   "security": [{ "bearerAuth": [] }]
  *   summary: Lista todos los usuarios
  *   description: Esta ruta es responsable de mostrar todos los registros de usuarios
+ *   parameters:
+ *     - in: query
+ *       name: page
  *   responses:
  *    '200':
  *       description: lista de usuarios
