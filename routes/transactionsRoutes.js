@@ -46,7 +46,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /transactions?userId&page&description&limit&order_by&order_direction:
+ * /transactions:
  *  get:
  *   tags: ["Transaction"]
  *   "security": [{ "bearerAuth": [] }]
@@ -54,7 +54,7 @@ const router = express.Router();
  *   description: Esta ruta es responsable de listar todas las transacciones, tambien si se especifica un ID de usuario como parametro por query devuelve las transacciones que pertenecen a un usuario
  *   parameters:
  *     - in: query
- *       name: userId
+ *       name: query
  *       schema:
  *         type: integer
  *       description: id de usuario
@@ -64,26 +64,6 @@ const router = express.Router();
  *         type: integer
  *       required: true
  *       description: pagina
- *     - in: query
- *       name: description
- *       schema:
- *         type: integer
- *       description: descripcion
- *     - in: query
- *       name: limit
- *       schema:
- *         type: integer
- *       description: limite
- *     - in: query
- *       name: order_by
- *       schema:
- *         type: integer
- *       description: orden
- *     - in: query
- *       name: order_direction
- *       schema:
- *         type: integer
- *       description: direccion de orden
  *   responses:
  *    '200':
  *     description: Se obtuvieron todas las transacciones
