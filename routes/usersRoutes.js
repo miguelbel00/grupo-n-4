@@ -16,7 +16,7 @@ const { UserSchema } = require('../schemas/userValidatorSchema')
 
 const router = Router();
 
-router.put('/users/:id', validatorSchemas(UserSchema), [verify, verifyUser], ownership, updateUser)
+router.put('/users/:id', validatorSchemas(UserSchema), ownership, updateUser)
 router.get("/users/:id", getById);
 router.delete("/users/:id", deleteUser);
 router.get('/users', getAllUsers);
