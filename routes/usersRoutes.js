@@ -157,40 +157,6 @@ router.delete("/users/:id", deleteUser);
 */
 router.get('/users', getAllUsers);
 
-
-/**
- * @swagger
- * /image/{id}:
- *  post:
- *   tags: ["User"]
- *   "security": [{ "bearerAuth": [] }]
- *   summary: actualizar imagen de usuario 
- *   description: Esta ruta es responsable de actualizar el avatar de un usuario por id
- *   parameters:
- *     - in: path
- *       name: id
- *       schema:
- *         type: integer
- *       required: true
- *       description: id del usuario
- *   requestBody:
- *    required: true
- *    content:
- *     application/json:
- *      schema:
- *       avatar: 
- *          type: string
- *       example:
- *         avatar: https://toppng.com/uploads/preview/app-icon-set-login-icon-comments-avatar-icon-11553436380yill0nchdm.png
- *       responses:
- *    '200':
- *       description: imagen usuario actualizado
- *    '403':
- *       description: fallo de auth
- *    '404':
- *       description: usuario no encontrados
- * 
-*/
 router.post('/image',upload.single('image'),imageUpload);
 
 module.exports = router;
