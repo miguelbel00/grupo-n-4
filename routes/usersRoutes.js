@@ -51,12 +51,7 @@ const router = Router();
  *         firstName: Kenneth
  *         lastname: Castillo
  *         email: Kenneth@mail.com
- *         password: $10$058rWWyQIDvjjHZcW8JtbeGLnWdqaOeQV71upF.baS/sYrVFLDovW
- *         avatar: https://toppng.com/uploads/preview/app-icon-set-login-icon-comments-avatar-icon-11553436380yill0nchdm.png
- *         rolId: 1
- *         createdAt: 2022-11-11 14:02:21
- *         updatedAt: 2022-11-11 14:02:21
- *         deletedAt: null
+ *         password: "123456"
  */
 
 
@@ -91,7 +86,7 @@ const router = Router();
  *       description: usuario no encontrados
  * 
 */
-router.put('/users/:id', updateUser);
+router.put('/users/:id',ownership, updateUser);
 
 /**
  * @swagger
@@ -118,7 +113,7 @@ router.put('/users/:id', updateUser);
  * 
 */
 router.put('/users/:id', validatorSchemas(UserSchema), ownership, updateUser)
-router.get("/users/:id", getById);
+router.get("/users/:id",ownership ,getById);
 
 /**
  * @swagger
@@ -144,7 +139,7 @@ router.get("/users/:id", getById);
  *       description: usuario no encontrado
  * 
 */
-router.delete("/users/:id", deleteUser);
+router.delete("/users/:id",ownership, deleteUser);
 
 /**
  * @swagger
@@ -157,6 +152,9 @@ router.delete("/users/:id", deleteUser);
  *   parameters:
  *     - in: query
  *       name: page
+ *       schema: 
+ *         type: integer
+ *       required: true
  *   responses:
  *    '200':
  *       description: lista de usuarios
@@ -164,7 +162,7 @@ router.delete("/users/:id", deleteUser);
  *       description: usuarios no encontrados
  * 
 */
-router.get('/users', getAllUsers);
+router.get('/users', ownership,getAllUsers);
 router.post('/image', upload.single('image'), imageUpload);
 
 module.exports = router;

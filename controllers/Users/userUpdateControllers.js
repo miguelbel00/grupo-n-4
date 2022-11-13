@@ -11,9 +11,16 @@ module.exports = {
             const { id } = req.params
             let { firstName, lastname, email, password, avatar } = req.body
 
+            if (email) {
+                const userEmail = await User.findOne({ where: { email } })
+            
+                if (userEmail) throw new ErrorObject('The email is already in use', 404)
+            }
+
             const user = await User.findOne({ where: { id } })
             
             if (!user) throw new ErrorObject('The user not exists', 404)
+
 
             if (password) {
                 const salt = bcrypt.genSaltSync();

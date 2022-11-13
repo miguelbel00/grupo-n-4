@@ -4,6 +4,7 @@ const { endpointResponse } = require("../../helpers/success");
 const { catchAsync } = require("../../helpers/catchAsync");
 const { ErrorObject } = require("../../helpers/error");
 const { Op } = require("sequelize");
+const {encode} = require('../../middlewares/JWT')
 const {
   paginate,
 } = require("../../middlewares/paginateTransactionsMiddleware");
@@ -77,7 +78,7 @@ module.exports = {
       endpointResponse({
         res,
         message: "Transactions retrieved successfully",
-        body: transactions,
+        body: encode({payload:transactions}),
       });
     } catch (error) {
       const httpError = createHttpError(

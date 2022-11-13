@@ -8,7 +8,7 @@ const TransactionSchema = checkSchema(
     isLength: {
       errorMessage:
         'Description must be at least 20 chars long and max 50',
-      options: { min: 20, max: 99},
+      options: { min: 4, max: 200},
     },
     exists: {
       errorMessage: 'Description is required',
@@ -23,17 +23,7 @@ const TransactionSchema = checkSchema(
     exists: {
       errorMessage: 'Amount is required',
     },
-  },
-  date: {
-    isLength: {
-      errorMessage:
-        'Date must be at least 1 chars long and max 10',
-      options: { min: 1 },
-    },
-    exists: {
-      errorMessage: 'Date is required',
-    },
-  },
+  }
 });
 
 module.exports = {
