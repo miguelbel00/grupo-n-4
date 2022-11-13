@@ -14,7 +14,7 @@ module.exports = {
       //get the query params
 
       const {
-        userId,
+        query,
         description = 0,
         page = 0,
         limit = 10,
@@ -22,13 +22,12 @@ module.exports = {
         order_direction = "asc",
       } = req.query;
 
-      if (userId) {
-        if (userId !== req.user.id.toString() && req.user.roleId !== 1) {
-          throw new ErrorObject("you don't have permissions", 403)
-        }
+      if (query !== req.user.id.toString() && req.user.roleId !== 1) throw new ErrorObject("you don't have permissions", 403)
+
+      if (query === req.user.id.toString()) {
         const transactions = await Transaction.findAll({ where: { userId: req.user.id } })
 
-        endpointResponse({
+        return endpointResponse({
           res,
           message: 'Transactions found successfully',
           body: transactions
