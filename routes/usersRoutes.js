@@ -8,9 +8,101 @@ const {imageUpload} = require("../controllers/Users/imageUploadControllers");
 
 const router = Router();
 
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Users:
+ *       type: object
+ *       required:
+ *        - firstName
+ *        - lastname
+ *        - email
+ *        - password
+ *       properties:
+ *        firstName:
+ *         type: string
+ *        lastname:
+ *         type: string
+ *        email:
+ *         type: string
+ *        password:
+ *         type: string
+ *        avatar:
+ *         type: string
+ *        rolId:
+ *         type: integer 
+ *        createdAt:
+ *         type: string
+ *        updatedAt:
+ *         type: string
+ *        deletedAt:
+ *         type: string
+ *       example:
+ *         firstName: Kenneth
+ *         lastname: Castillo
+ *         email: Kenneth@mail.com
+ *         password: $10$058rWWyQIDvjjHZcW8JtbeGLnWdqaOeQV71upF.baS/sYrVFLDovW
+ *         avatar: https://toppng.com/uploads/preview/app-icon-set-login-icon-comments-avatar-icon-11553436380yill0nchdm.png
+ *         rolId: 1
+ *         createdAt: 2022-11-11 14:02:21
+ *         updatedAt: 2022-11-11 14:02:21
+ *         deletedAt: null
+ */
+
+
+
+
+
+
+
+
 router.put('/users/:id', updateUser);
+
+/**
+ * @swagger
+ * /users/{id}:
+ *  get:
+ *   tags: ["User"]
+ *   "security": [{ "bearerAuth": [] }]
+ *   summary: buscar un usuario por id
+ *   description: Esta ruta es responsable de mostrar el detalle de un usuario
+ *   parameters:
+ *     - in: path
+ *       name: id
+ *       schema:
+ *         type: integer
+ *       required: true
+ *       description: id del usuario
+ *   responses:
+ *    '200':
+ *       description: Detalle de usuario
+ *    '403':
+ *       description: fallo de auth
+ *    '404':
+ *       description: usuario no encontrado
+ * 
+*/
+
 router.get("/users/:id", getById);
 router.delete("/users/:id", deleteUser);
+
+/**
+ * @swagger
+ * /users:
+ *  get:
+ *   tags: ["User"]
+ *   "security": [{ "bearerAuth": [] }]
+ *   summary: Lista todos los usuarios
+ *   description: Esta ruta es responsable de mostrar todos los registros de usuarios
+ *   responses:
+ *    '200':
+ *       description: lista de usuarios
+ *    '404':
+ *       description: usuarios no encontrados
+ * 
+*/
 router.get('/users', getAllUsers);
 router.post('/image',upload.single('image'),imageUpload);
 
