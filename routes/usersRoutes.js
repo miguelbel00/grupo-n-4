@@ -188,7 +188,7 @@ router.get('/users', getAllUsers);
  *       description: usuario no encontrados
  * 
 */
-router.post('/image',upload.single('image'),imageUpload);
+router.post('/image/:id',upload.single('image'),imageUpload);
 
 module.exports = router;
 
