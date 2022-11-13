@@ -53,11 +53,36 @@ const router = Router();
 
 
 
-
-
-
-
-
+/**
+ * @swagger
+ * /users/{id}:
+ *  put:
+ *   tags: ["User"]
+ *   "security": [{ "bearerAuth": [] }]
+ *   summary: actualizar usuarios 
+ *   description: Esta ruta es responsable de actualizar un usuario por id
+ *   parameters:
+ *     - in: path
+ *       name: id
+ *       schema:
+ *         type: integer
+ *       required: true
+ *       description: id del usuario
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *        $ref: '#/components/schemas/Users'
+ *   responses:
+ *    '200':
+ *       description: usuario actualizado
+ *    '403':
+ *       description: fallo de auth
+ *    '404':
+ *       description: usuario no encontrados
+ * 
+*/
 router.put('/users/:id', updateUser);
 
 /**
@@ -84,8 +109,32 @@ router.put('/users/:id', updateUser);
  *       description: usuario no encontrado
  * 
 */
-
 router.get("/users/:id", getById);
+
+/**
+ * @swagger
+ * /users/{id}:
+ *  delete:
+ *   tags: ["User"]
+ *   "security": [{ "bearerAuth": [] }]
+ *   summary: eliminar un usuario por id
+ *   description: Esta ruta es responsable del eliminado logico de un usuario por id
+ *   parameters:
+ *     - in: path
+ *       name: id
+ *       schema:
+ *         type: integer
+ *       required: true
+ *       description: id del usuario
+ *   responses:
+ *    '200':
+ *       description: Usuario eliminado
+ *    '403':
+ *       description: fallo de auth
+ *    '400':
+ *       description: usuario no encontrado
+ * 
+*/
 router.delete("/users/:id", deleteUser);
 
 /**
@@ -104,6 +153,41 @@ router.delete("/users/:id", deleteUser);
  * 
 */
 router.get('/users', getAllUsers);
+
+
+/**
+ * @swagger
+ * /image/{id}:
+ *  post:
+ *   tags: ["User"]
+ *   "security": [{ "bearerAuth": [] }]
+ *   summary: actualizar imagen de usuario 
+ *   description: Esta ruta es responsable de actualizar el avatar de un usuario por id
+ *   parameters:
+ *     - in: path
+ *       name: id
+ *       schema:
+ *         type: integer
+ *       required: true
+ *       description: id del usuario
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       avatar: 
+ *          type: string
+ *       example:
+ *         avatar: https://toppng.com/uploads/preview/app-icon-set-login-icon-comments-avatar-icon-11553436380yill0nchdm.png
+ *       responses:
+ *    '200':
+ *       description: imagen usuario actualizado
+ *    '403':
+ *       description: fallo de auth
+ *    '404':
+ *       description: usuario no encontrados
+ * 
+*/
 router.post('/image',upload.single('image'),imageUpload);
 
 module.exports = router;
