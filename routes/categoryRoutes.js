@@ -3,6 +3,7 @@ const { createCategory } = require('../controllers/Category/categoryCreateContro
 const { getAllCategory } = require('../controllers/Category/categorySearchController')
 const { getCategoryById } = require('../controllers/Category/categorySearchOneController')
 const { updateCategory } = require('../controllers/Category/categoryUpdateController')
+const {ownership} = require('../middlewares/ownership')
 const validatorSchemas = require('../middlewares/validatorSchemas');
 const { CategorySchema } = require('../schemas/categoryValidatorSchema');
 
@@ -49,7 +50,7 @@ const router = express.Router()
  *      description: fallo de auth
  * 
  */
-router.post('/categories', validatorSchemas(CategorySchema), createCategory)
+router.post('/categories',ownership ,validatorSchemas(CategorySchema), createCategory)
 /**
  * @swagger
  * /categories:
@@ -66,7 +67,7 @@ router.post('/categories', validatorSchemas(CategorySchema), createCategory)
  * 
 */
 
-router.get('/categories', getAllCategory)
+router.get('/categories',ownership ,getAllCategory)
 /**
  * @swagger
  * /categories/{id}:
@@ -92,7 +93,7 @@ router.get('/categories', getAllCategory)
  * 
 */
 
-router.get('/categories/:id', getCategoryById)
+router.get('/categories/:id',ownership, getCategoryById)
 
 /**
  * @swagger
@@ -124,5 +125,5 @@ router.get('/categories/:id', getCategoryById)
  *       description: categoria no encontrada
  * 
 */
-router.put('/categories/:id', validatorSchemas(CategorySchema),updateCategory)
+router.put('/categories/:id',ownership, validatorSchemas(CategorySchema),updateCategory)
 module.exports = router

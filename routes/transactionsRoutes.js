@@ -8,7 +8,7 @@ const { updateTransactionById } = require("../controllers/Transactions/transatio
 const { deleteTransaction } = require("../controllers/Transactions/transactionsDeleteControllers");
 const validatorSchemas = require('../middlewares/validatorSchemas');
 const { TransactionSchema } = require('../schemas/transactionValidatorSchema')
-
+const {ownership} = require('../middlewares/ownership')
 
 const router = express.Router();
 
@@ -40,7 +40,6 @@ const router = express.Router();
  *         amount: 300
  *         userId: 2
  *         categoryId: 1
- *         date: 2022-11-11 21:31:04
  */
 
 
@@ -100,7 +99,7 @@ router.get("/transactions", listTransactions);
  *     description: Esta transacción no existe
  * 
  */
-router.get("/transactions/:id", getTransactionById);
+router.get("/transactions/:id", ownership,getTransactionById);
 
 
 /**
@@ -157,7 +156,7 @@ router.post("/transactions", validatorSchemas(TransactionSchema), createTransact
  *      description: Esta transacción no existe
  * 
  */
-router.put("/transactions/:id", validatorSchemas(TransactionSchema), updateTransactionById);
+router.put("/transactions/:id", ownership,validatorSchemas(TransactionSchema), updateTransactionById);
 
 
 /**

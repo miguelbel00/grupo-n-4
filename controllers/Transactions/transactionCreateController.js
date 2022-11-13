@@ -2,12 +2,12 @@ const createHttpError = require('http-errors')
 const { Transaction } = require('../../database/models')
 const { endpointResponse } = require('../../helpers/success')
 const { catchAsync } = require('../../helpers/catchAsync')
-
+const {encode} = require("../../middlewares/JWT")
 module.exports = {
     createTransaction: catchAsync(async (req, res, next) => {
       try {
         const response = await Transaction.create({
-            description: req.body.description,
+            description:req.body.description,
             amount: req.body.amount,
             userId: req.body.userId,
             categoryId: req.body.categoryId,
@@ -16,7 +16,7 @@ module.exports = {
         endpointResponse({
           res,
           message: 'Transaction created',
-          body: response,
+          body: encode(response.dataValues),
         })
       } catch (error) {
         const httpError = createHttpError(

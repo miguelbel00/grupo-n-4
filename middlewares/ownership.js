@@ -13,7 +13,7 @@ module.exports = {
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error ownership] - [updateUserController - PUT]: ${error.message}`
+        `[Error ownerShip] - [Middleware - Autorization]: ${error.message}`
       );
       next(httpError);
     }
