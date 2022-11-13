@@ -10,19 +10,22 @@ describe('[TEST-USERS]', () => {
   const updateUser = {
     firstName: 'updateTest111111111',
     lastname: 'updateTest1',
-    email: 'Test1update@test1.com'
+    email: 'Test1update@gmail.com',
+    password: '123456'
   }
   const registerUser = {
     firstName: "test1",
     lastname: "lastTest1",
     password: '123456',
-    email: "test1@mail.com"
+    avatar: "example",
+    email: "test32323@gmail.com",
+    roleId: 1
   }
   before(async () => {
     const { body } = await request(app).post('/auth/login')
       .set('Accept', 'application/json')
       .send({
-        email: 'mati@mail.com',
+        email: 'Rosemary@mail.com',
         password: '123456'
       })
       .expect('Content-Type', /json/)
@@ -30,22 +33,6 @@ describe('[TEST-USERS]', () => {
     const { body: response } = body;
     token = response.token
     id = response.user.id
-  })
-
-  describe('[LIST-USERS]', () => {
-    it('should return a list of users', async () => {
-      const { body } = await request(app)
-        .get('/users')
-        .set('Authorization', token)
-        .set('Accept', 'aplication/json')
-        .expect('Content-type', /json/)
-
-      const { code, message, body: response } = body
-      expect(body.code).to.be.a('number')
-      expect(code).to.equal(200);
-      expect(message).to.equal('Users obtained');
-      expect(response).to.be.a('array');
-    })
   })
 
   describe('[CREATE-USER]', () => {
@@ -80,8 +67,9 @@ describe('[TEST-USERS]', () => {
 
       const { error } = await request(app).put(`/users/89`)
         .send(updateUser)
+        .set('Authorization', `Bearer ${token}`)
         .set('Accept', 'text/html; charset=utf-8')
-        .expect('Content-Type', /text\/html/)
+        .expect('Content-Type',/text\/html/)
 
       const { status, text } = error
       expect(status).to.be.a('number');
@@ -91,9 +79,10 @@ describe('[TEST-USERS]', () => {
     })
 
     it('should return an update user', async () => {
-      const user = await User.findOne({ where: { email: 'test1@mail.com' } });
+      const user = await User.findOne({ where: { email: 'test32323@gmail.com' } });
       const { body } = await request(app).put(`/users/${user.id}`)
         .send(updateUser)
+        .set('Authorization', `Bearer ${token}`)
         .set('Accept', 'aplication/json')
         .expect('Content-Type', /json/)
       const { code, message, body: response } = body
@@ -106,10 +95,10 @@ describe('[TEST-USERS]', () => {
 
   describe('[DELETE-USER]', () => {
     it('should delete a user', async () => {
-      const user = await User.findOne({ where: { email: 'Test1update@test1.com' } });
+      const user = await User.findOne({ where: { email: 'Test1update@gmail.com' } });
       const { body } = await request(app)
         .delete(`/users/${user.id}`)
-        .set('Authorization', token)
+        .set('Authorization', `Bearer ${token}`)
         .set('Accept', 'aplication/json')
         .expect('Content-type', /json/)
       const { code, message, body: response } = body
@@ -121,5 +110,22 @@ describe('[TEST-USERS]', () => {
       expect(response).to.equal(1)
     })
   })
+
+  describe('[LIST-USERS]', () => {
+    it('should return a list of users', async () => {
+      const { body } = await request(app)
+        .get('/users/?page=1')
+        .set('Authorization', `Bearer ${token}`)
+        .set('Accept', 'aplication/json')
+        .expect('Content-type', /json/)
+
+      const { code, message, body: response } = body
+      expect(body.code).to.be.a('number')
+      expect(code).to.equal(200);
+      expect(message).to.equal('Users  retrieved successfully');
+      expect(response).to.be.a('object');
+    })
+  })
+
 
 })

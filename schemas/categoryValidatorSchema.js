@@ -5,6 +5,9 @@ const { checkSchema } = require('express-validator');
 const CategorySchema = checkSchema(
   {
   name: {
+    isString:{
+      errorMessage: 'Should be String',
+    },
     isLength: {
       errorMessage: 'Name should be at least 5 chars long',
       options: { min: 5, max: 20},
