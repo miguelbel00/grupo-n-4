@@ -18,6 +18,8 @@ const verifyUser = async (req, res, next) => {
             throw new ErrorObject("The owner of this token does not exist anymore",403
             );
         }
+
+        req.user = user;
         next();
 
     } catch (error) {
